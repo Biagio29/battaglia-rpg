@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5tfbl3dk3ljl"]
+
+[ext_resource type="Script" uid="uid://c75gsa38dmoop" path="res://test.gd" id="1_lc1oi"]
+[ext_resource type="PackedScene" uid="uid://bqolu06b0phru" path="res://Scenes/Pokemon.tscn" id="2_8od7v"]
+[ext_resource type="PackedScene" uid="uid://c17b42q7c053a" path="res://Scenes/battle_manager.tscn" id="4_35xla"]
+[ext_resource type="Resource" uid="uid://jplehi7of5ji" path="res://Resources/Pokemon/Charizard.tres" id="4_ys1qc"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_lc1oi")
+
+[node name="Pokemon" parent="." instance=ExtResource("2_8od7v")]
+position = Vector2(185, 203)
+stats = ExtResource("4_ys1qc")
+
+[node name="Pokemon2" parent="." instance=ExtResource("2_8od7v")]
+position = Vector2(389, 103)
+stats = ExtResource("4_ys1qc")
+is_attacker = false
+
+[node name="BattleManager" parent="." instance=ExtResource("4_35xla")]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqolu06b0phru"]
+
+[ext_resource type="Script" uid="uid://bej3sdrk6v125" path="res://Script/pokemon.gd" id="1_0kaq2"]
+
+[node name="Pokemon" type="Node2D"]
+script = ExtResource("1_0kaq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
