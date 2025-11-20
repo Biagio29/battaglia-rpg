@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PokemonStats" load_steps=2 format=3 uid="uid://cubqb3rp8f8xs"]
+
+[ext_resource type="Script" uid="uid://bv41rlaylfdgd" path="res://DataScript/pokemonStats.gd" id="1_wqn6d"]
+
+[resource]
+script = ExtResource("1_wqn6d")
+sprite_number = 25
+metadata/_custom_type_script = "uid://bv41rlaylfdgd"

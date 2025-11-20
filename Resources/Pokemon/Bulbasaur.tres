@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PokemonStats" load_steps=2 format=3 uid="uid://utv8agtvvun0"]
+
+[ext_resource type="Script" uid="uid://bv41rlaylfdgd" path="res://DataScript/pokemonStats.gd" id="1_2vtcm"]
+
+[resource]
+script = ExtResource("1_2vtcm")
+name = "Pikachu"
+sprite_number = 3
+metadata/_custom_type_script = "uid://bv41rlaylfdgd"

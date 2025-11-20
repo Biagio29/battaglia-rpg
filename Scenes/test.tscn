@@ -1,20 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5tfbl3dk3ljl"]
+[gd_scene load_steps=7 format=3 uid="uid://b5tfbl3dk3ljl"]
 
-[ext_resource type="Script" uid="uid://c75gsa38dmoop" path="res://test.gd" id="1_lc1oi"]
+[ext_resource type="Texture2D" uid="uid://dvq3r8k2d3a7f" path="res://Assets/Sprite/battleEnvirorment/GrassBackground.png" id="2_5wyu1"]
 [ext_resource type="PackedScene" uid="uid://bqolu06b0phru" path="res://Scenes/Pokemon.tscn" id="2_8od7v"]
+[ext_resource type="Resource" uid="uid://utv8agtvvun0" path="res://Resources/Pokemon/Bulbasaur.tres" id="3_35xla"]
 [ext_resource type="PackedScene" uid="uid://c17b42q7c053a" path="res://Scenes/battle_manager.tscn" id="4_35xla"]
 [ext_resource type="Resource" uid="uid://jplehi7of5ji" path="res://Resources/Pokemon/Charizard.tres" id="4_ys1qc"]
+[ext_resource type="Texture2D" uid="uid://cmn8ua1r2bjea" path="res://Assets/Sprite/battleEnvirorment/DayGrass.png" id="6_i3aeo"]
 
 [node name="Battle" type="Node2D"]
-script = ExtResource("1_lc1oi")
 
-[node name="Pokemon" parent="." instance=ExtResource("2_8od7v")]
-position = Vector2(133, 132)
+[node name="BackGround" type="Sprite2D" parent="."]
+scale = Vector2(1.2534248, 1.2534248)
+texture = ExtResource("2_5wyu1")
+centered = false
+
+[node name="Platforms" type="Sprite2D" parent="."]
+position = Vector2(128, 142)
+texture = ExtResource("6_i3aeo")
+
+[node name="Player" parent="." instance=ExtResource("2_8od7v")]
+position = Vector2(56, 147)
+is_player = true
 stats = ExtResource("4_ys1qc")
 
-[node name="Pokemon2" parent="." instance=ExtResource("2_8od7v")]
-position = Vector2(239, 47)
-stats = ExtResource("4_ys1qc")
-is_attacker = false
+[node name="Enemy" parent="." instance=ExtResource("2_8od7v")]
+position = Vector2(192, 94)
+stats = ExtResource("3_35xla")
 
-[node name="BattleManager" parent="." instance=ExtResource("4_35xla")]
+[node name="BattleManager" parent="." node_paths=PackedStringArray("player_node", "enemy_node") instance=ExtResource("4_35xla")]
+player_node = NodePath("../Player")
+enemy_node = NodePath("../Enemy")
