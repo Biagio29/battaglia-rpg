@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5tfbl3dk3ljl"]
+[gd_scene load_steps=10 format=3 uid="uid://b5tfbl3dk3ljl"]
 
 [ext_resource type="Texture2D" uid="uid://dvq3r8k2d3a7f" path="res://Assets/Sprite/battleEnvirorment/GrassBackground.png" id="2_5wyu1"]
 [ext_resource type="PackedScene" uid="uid://bqolu06b0phru" path="res://Scenes/Pokemon.tscn" id="2_8od7v"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c17b42q7c053a" path="res://Scenes/battle_manager.tscn" id="4_35xla"]
 [ext_resource type="Resource" uid="uid://jplehi7of5ji" path="res://Resources/Pokemon/Charizard.tres" id="4_ys1qc"]
 [ext_resource type="Texture2D" uid="uid://cmn8ua1r2bjea" path="res://Assets/Sprite/battleEnvirorment/DayGrass.png" id="6_i3aeo"]
+[ext_resource type="StyleBox" uid="uid://b3gwsoxvn2dh0" path="res://Assets/ButtonBattleStyle.tres" id="7_0c07c"]
+[ext_resource type="StyleBox" uid="uid://kumh5wcem03r" path="res://Assets/ButtonBattleFocus.tres" id="8_0c07c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0c07c"]
 
 [node name="Battle" type="Node2D"]
 
@@ -15,18 +19,122 @@ texture = ExtResource("2_5wyu1")
 centered = false
 
 [node name="Platforms" type="Sprite2D" parent="."]
-position = Vector2(128, 142)
+position = Vector2(128, 90)
 texture = ExtResource("6_i3aeo")
 
 [node name="Player" parent="." instance=ExtResource("2_8od7v")]
-position = Vector2(56, 147)
+position = Vector2(56, 88)
 is_player = true
 stats = ExtResource("4_ys1qc")
 
 [node name="Enemy" parent="." instance=ExtResource("2_8od7v")]
-position = Vector2(192, 94)
+position = Vector2(192, 42)
 stats = ExtResource("3_35xla")
 
 [node name="BattleManager" parent="." node_paths=PackedStringArray("player_node", "enemy_node") instance=ExtResource("4_35xla")]
 player_node = NodePath("../Player")
 enemy_node = NodePath("../Enemy")
+
+[node name="BattleUI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="BattleUI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.13682586, 0.13682568, 0.13682571, 0.6509804)
+
+[node name="MoveBox" type="Control" parent="BattleUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -53.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="BattleUI/ColorRect/MoveBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="BattleUI/ColorRect/MoveBox/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 142.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Move1" type="Button" parent="BattleUI/ColorRect/MoveBox/TextureRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("7_0c07c")
+theme_override_styles/hover = ExtResource("8_0c07c")
+theme_override_styles/focus = ExtResource("8_0c07c")
+action_mode = 0
+text = "Mossa 1"
+text_overrun_behavior = 5
+
+[node name="Move2" type="Button" parent="BattleUI/ColorRect/MoveBox/TextureRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("7_0c07c")
+theme_override_styles/hover = ExtResource("8_0c07c")
+theme_override_styles/focus = ExtResource("8_0c07c")
+action_mode = 0
+text = "Mossa 2"
+text_overrun_behavior = 5
+
+[node name="Move3" type="Button" parent="BattleUI/ColorRect/MoveBox/TextureRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("7_0c07c")
+theme_override_styles/hover = ExtResource("8_0c07c")
+theme_override_styles/focus = ExtResource("8_0c07c")
+action_mode = 0
+text = "Mossa 3"
+text_overrun_behavior = 5
+
+[node name="Move4" type="Button" parent="BattleUI/ColorRect/MoveBox/TextureRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("7_0c07c")
+theme_override_styles/hover = ExtResource("8_0c07c")
+theme_override_styles/focus = ExtResource("8_0c07c")
+action_mode = 0
+text = "Mossa 4"
+text_overrun_behavior = 5
+
+[node name="TextureRect" type="TextureRect" parent="BattleUI/ColorRect/MoveBox/TextureRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 135.0
+offset_bottom = -9.0
+grow_vertical = 2
+texture = SubResource("CanvasTexture_0c07c")
