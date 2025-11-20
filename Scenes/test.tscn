@@ -9,11 +9,11 @@
 script = ExtResource("1_lc1oi")
 
 [node name="Pokemon" parent="." instance=ExtResource("2_8od7v")]
-position = Vector2(185, 203)
+position = Vector2(133, 132)
 stats = ExtResource("4_ys1qc")
 
 [node name="Pokemon2" parent="." instance=ExtResource("2_8od7v")]
-position = Vector2(389, 103)
+position = Vector2(239, 47)
 stats = ExtResource("4_ys1qc")
 is_attacker = false
 
