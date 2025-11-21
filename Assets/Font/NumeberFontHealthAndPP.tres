@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://sqsbii4oce03"]
+
+[ext_resource type="FontFile" uid="uid://bum43emqxxlon" path="res://Assets/Font/pokemon_pixel_font.ttf" id="1_5lrsm"]
+
+[resource]
+font = ExtResource("1_5lrsm")
+font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+shadow_size = 2
+shadow_color = Color(0.8156863, 0.8156863, 0.78431374, 1)

@@ -17,6 +17,27 @@ enum Bioma{
 	swamp,
 	water
 }
+# Type enum per i tipi di mosse/pokemon
+enum Type{
+    BUG,
+    DARK,
+    DRAGON,
+    ELECTRIC,
+    FIGHT,
+    FIRE,
+    FLYING,
+    GHOST,
+    GRASS,
+    GROUND,
+    ICE,
+    NONE,
+    NORMAL,
+    POISON,
+    PSYCHIC,
+    ROCK,
+    STEEL,
+    WATER
+}
 
 var current_biome: Bioma = Bioma.path
 # La squadra del giocatore (massimo 6)
@@ -35,16 +56,17 @@ func setup_test_team():
 	var pikachu_res = load("res://Resources/Pokemon/Pikachu.tres")
 	
 	# Creiamo le istanze "viventi"
-	var my_charizard = PokemonInstance.new(charizard_res, 10, )
+	var my_charizard = PokemonInstance.new(charizard_res, 10)
+	my_charizard.nickname = "Fiamma"
 	var my_pikachu = PokemonInstance.new(pikachu_res, 5)
-	
+	my_pikachu.nickname = "Fulmine"
 	# Aggiungiamo alla squadra
 	player_party.append(my_pikachu)
 	player_party.append(my_charizard)
 	
 	
 	print("Squadra creata! Hai " + str(player_party.size()) + " pokemon.")
-
+	print("Primo pokemon: " + player_party[0].stats.name + " Lv." + str(player_party[0].level) + " max HP: " + str(player_party[0].max_hp)) 
 func get_active_pokemon() -> PokemonInstance:
 	if player_party.size() > 0:
 		return player_party[active_slot_index]

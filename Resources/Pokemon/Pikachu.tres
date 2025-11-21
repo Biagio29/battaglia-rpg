@@ -9,5 +9,6 @@
 script = ExtResource("1_wqn6d")
 name = "Pikachu"
 sprite_number = 25
+max_hp = 1000
 starting_moves = Array[ExtResource("2_ukj6u")]([ExtResource("3_6jomo"), ExtResource("4_vsq3q")])
 metadata/_custom_type_script = "uid://bv41rlaylfdgd"

@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_bkp11")
-name = "Attacco raptusss"
+name = "Attacco rapido"
 description = "Il pokemon scatta a velocità elevata contro il nemico."
+move_type = 12
+max_pp = 0
 metadata/_custom_type_script = "uid://b706sh55lbl7c"

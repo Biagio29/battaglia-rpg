@@ -9,6 +9,7 @@ class_name Pokemon
 var my_data: PokemonInstance 
 
 var current_hp: int
+var max_hp: int
 var level: int = 1
 
 # --- VARIABILI GRAFICHE (Il tuo sistema) ---
@@ -26,13 +27,16 @@ func _ready() -> void:
 			stats = active_pkmn.stats   # Prendo le stats base (incluso sprite_number)
 			current_hp = active_pkmn.current_hp # Prendo la vita salvata
 			level = active_pkmn.level
+			max_hp = active_pkmn.max_hp
 			print("Caricato Player: " + stats.name + " HP: " + str(current_hp))
 		else:
 			print("ERRORE: Nessun pokemon nella squadra!")
 			return
 	else:
 		# Sei il nemico: usa le stats impostate nell'Inspector
-		current_hp = stats.max_hp
+		max_hp = stats.max_hp
+		current_hp = max_hp
+		print("Caricato Nemico: " + stats.name + " HP: " + str(current_hp))
 		# Qui potresti aggiungere logica per randomizzare il livello del nemico
 	
 	# PASSO 2: CARICAMENTO GRAFICO (La tua logica)

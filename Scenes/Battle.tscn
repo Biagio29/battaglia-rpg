@@ -1,0 +1,305 @@
+[gd_scene load_steps=19 format=3 uid="uid://b5tfbl3dk3ljl"]
+
+[ext_resource type="Script" uid="uid://r74igm3iy3bq" path="res://Script/Battle/Battle.gd" id="1_jr0ro"]
+[ext_resource type="Texture2D" uid="uid://baamj6gsx15gy" path="res://Assets/Sprite/battleEnvirorment/arena1_bg.png" id="2_6xsll"]
+[ext_resource type="Texture2D" uid="uid://2f625ly8mx1e" path="res://Assets/Sprite/battleEnvirorment/arena1_base0.png" id="3_imcj7"]
+[ext_resource type="Texture2D" uid="uid://do2ysdoxluc38" path="res://Assets/Sprite/battleEnvirorment/arena1_base1.png" id="4_7i387"]
+[ext_resource type="PackedScene" uid="uid://bqolu06b0phru" path="res://Scenes/Pokemon.tscn" id="5_nttxn"]
+[ext_resource type="Resource" uid="uid://utv8agtvvun0" path="res://Resources/Pokemon/Bulbasaur.tres" id="6_u5lwd"]
+[ext_resource type="Resource" uid="uid://cubqb3rp8f8xs" path="res://Resources/Pokemon/Pikachu.tres" id="7_dfi4p"]
+[ext_resource type="PackedScene" uid="uid://c17b42q7c053a" path="res://Scenes/battle_manager.tscn" id="8_yahm3"]
+[ext_resource type="Script" uid="uid://dyd3jgk07q3kj" path="res://Script/Battle/UI/battle_ui.gd" id="9_1s3yx"]
+[ext_resource type="Texture2D" uid="uid://cy0h8hv8rc4ww" path="res://Assets/UI/overlay_fight.png" id="10_mugwg"]
+[ext_resource type="FontFile" uid="uid://bum43emqxxlon" path="res://Assets/Font/pokemon_pixel_font.ttf" id="11_d13iw"]
+[ext_resource type="LabelSettings" uid="uid://bj1mcm400ko4f" path="res://Assets/Font/MoveTextSettings.tres" id="12_4nbmx"]
+[ext_resource type="Texture2D" uid="uid://bd6rypbgu8n5x" path="res://Assets/UI/cursor_fight.png" id="13_3quo0"]
+[ext_resource type="LabelSettings" uid="uid://sqsbii4oce03" path="res://Assets/Font/NumeberFontHealthAndPP.tres" id="14_d5dbc"]
+[ext_resource type="Texture2D" uid="uid://3ja86lnccsmw" path="res://Assets/UI/databox_normal.png" id="15_hoytp"]
+[ext_resource type="Texture2D" uid="uid://cdmilqdgj06c7" path="res://Assets/UI/overlay_hp.png" id="16_ybx13"]
+[ext_resource type="Texture2D" uid="uid://c4l7yv018c58h" path="res://Assets/UI/databox_normal_foe.png" id="17_xtlnh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8sys"]
+font = ExtResource("11_d13iw")
+font_size = 32
+font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+shadow_size = 2
+shadow_color = Color(0.8156863, 0.8156863, 0.78431374, 1)
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_jr0ro")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.62499994, 0.62499994)
+texture = ExtResource("2_6xsll")
+centered = false
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Plat_player" type="Sprite2D" parent="Platforms"]
+position = Vector2(79, 110)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("3_imcj7")
+
+[node name="Plat_enemy" type="Sprite2D" parent="Platforms"]
+position = Vector2(231, 63)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("4_7i387")
+
+[node name="Pokemon" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Pokemon" instance=ExtResource("5_nttxn")]
+position = Vector2(233, 33)
+stats = ExtResource("6_u5lwd")
+
+[node name="Player" parent="Pokemon" instance=ExtResource("5_nttxn")]
+position = Vector2(84.99999, 104)
+is_player = true
+stats = ExtResource("7_dfi4p")
+
+[node name="BattleManager" parent="." node_paths=PackedStringArray("player_node", "enemy_node", "battle_ui") instance=ExtResource("8_yahm3")]
+player_node = NodePath("../Pokemon/Player")
+enemy_node = NodePath("../Pokemon/Enemy")
+battle_ui = NodePath("../BattleUI")
+
+[node name="BattleUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("moves_container", "selection_arrow", "TypeLabel", "PPLabel", "PlayerNameLabel", "EnemyNameLabel", "PlayerHealth", "PlayerHealthBar", "EnemyHealthBar")]
+script = ExtResource("9_1s3yx")
+moves_container = NodePath("MovesContainer/BattleInterface/Moves")
+selection_arrow = NodePath("MovesContainer/BattleInterface/SelectionArrow")
+TypeLabel = NodePath("MovesContainer/Type")
+PPLabel = NodePath("MovesContainer/PP")
+PlayerNameLabel = NodePath("HealthContainer/PlayerHealth/PlayerName")
+EnemyNameLabel = NodePath("HealthContainer/TextureRect/EnemyName")
+PlayerHealth = NodePath("HealthContainer/PlayerHealth/PlayerHealth")
+PlayerHealthBar = NodePath("HealthContainer/PlayerHealth/PlayerHealthBar")
+EnemyHealthBar = NodePath("HealthContainer/TextureRect/EnemyHealthBar")
+
+[node name="MovesContainer" type="Control" parent="BattleUI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -53.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="BattleInterface" type="TextureRect" parent="BattleUI/MovesContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -60.000004
+offset_right = 192.0
+offset_bottom = 36.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("10_mugwg")
+
+[node name="Moves" type="GridContainer" parent="BattleUI/MovesContainer/BattleInterface"]
+layout_mode = 0
+offset_left = 30.400002
+offset_top = 11.199997
+offset_right = 350.4
+offset_bottom = 86.40001
+theme_override_constants/h_separation = 15
+columns = 2
+
+[node name="Move1" type="Label" parent="BattleUI/MovesContainer/BattleInterface/Moves"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+theme_override_fonts/font = ExtResource("11_d13iw")
+theme_override_font_sizes/font_size = 32
+text = " Mossa 1"
+label_settings = ExtResource("12_4nbmx")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Move2" type="Label" parent="BattleUI/MovesContainer/BattleInterface/Moves"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+theme_override_fonts/font = ExtResource("11_d13iw")
+theme_override_font_sizes/font_size = 32
+text = " Mossa 1"
+label_settings = ExtResource("12_4nbmx")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Move3" type="Label" parent="BattleUI/MovesContainer/BattleInterface/Moves"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+theme_override_fonts/font = ExtResource("11_d13iw")
+theme_override_font_sizes/font_size = 32
+text = " Mossa 1"
+label_settings = ExtResource("12_4nbmx")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Move4" type="Label" parent="BattleUI/MovesContainer/BattleInterface/Moves"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+theme_override_fonts/font = ExtResource("11_d13iw")
+theme_override_font_sizes/font_size = 32
+text = " Mossa 1"
+label_settings = ExtResource("12_4nbmx")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="SelectionArrow" type="TextureRect" parent="BattleUI/MovesContainer/BattleInterface"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 17.6
+offset_right = 47.0
+offset_bottom = 57.6
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("13_3quo0")
+
+[node name="Type" type="Label" parent="BattleUI/MovesContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.000015
+offset_top = -48.0
+offset_right = -7.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+theme_override_fonts/font = ExtResource("11_d13iw")
+theme_override_font_sizes/font_size = 16
+text = " GROUND"
+label_settings = ExtResource("14_d5dbc")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="PP" type="Label" parent="BattleUI/MovesContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -28.0
+offset_right = -7.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+theme_override_fonts/font = ExtResource("11_d13iw")
+theme_override_font_sizes/font_size = 16
+text = " 15/15"
+label_settings = ExtResource("14_d5dbc")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="HealthContainer" type="Control" parent="BattleUI"]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -90.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHealth" type="TextureRect" parent="BattleUI/HealthContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.00002
+offset_top = -44.000015
+offset_right = 99.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_hoytp")
+
+[node name="PlayerName" type="Label" parent="BattleUI/HealthContainer/PlayerHealth"]
+layout_mode = 0
+offset_left = 28.00003
+offset_top = 10.0000305
+offset_right = 132.00003
+offset_bottom = 38.00003
+text = "Prova 1"
+label_settings = ExtResource("12_4nbmx")
+
+[node name="PlayerHealth" type="Label" parent="BattleUI/HealthContainer/PlayerHealth"]
+layout_mode = 0
+offset_left = 132.00003
+offset_top = 48.00003
+offset_right = 236.00003
+offset_bottom = 107.00003
+text = "100/100
+"
+label_settings = SubResource("LabelSettings_q8sys")
+horizontal_alignment = 2
+
+[node name="PlayerHealthBar" type="Sprite2D" parent="BattleUI/HealthContainer/PlayerHealth"]
+position = Vector2(136, 42.00003)
+texture = ExtResource("16_ybx13")
+offset = Vector2(48, 0)
+vframes = 3
+
+[node name="TextureRect" type="TextureRect" parent="BattleUI/HealthContainer"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 12.0
+offset_right = 283.0
+offset_bottom = 74.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_xtlnh")
+
+[node name="EnemyName" type="Label" parent="BattleUI/HealthContainer/TextureRect"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 116.0
+offset_bottom = 36.0
+text = "Prova 2"
+label_settings = ExtResource("12_4nbmx")
+
+[node name="EnemyHealthBar" type="Sprite2D" parent="BattleUI/HealthContainer/TextureRect"]
+position = Vector2(118, 42)
+texture = ExtResource("16_ybx13")
+offset = Vector2(48, 0)
+vframes = 3

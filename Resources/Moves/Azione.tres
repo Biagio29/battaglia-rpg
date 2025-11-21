@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_lryy8")
 description = "Un attacco fisico standard. Colpisce il nemico con il corpo."
+move_type = 12
+max_pp = 30
 metadata/_custom_type_script = "uid://b706sh55lbl7c"
