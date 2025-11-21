@@ -1,8 +1,15 @@
-[gd_resource type="Resource" script_class="PokemonStats" load_steps=2 format=3 uid="uid://jplehi7of5ji"]
+[gd_resource type="Resource" script_class="PokemonStats" load_steps=7 format=3 uid="uid://jplehi7of5ji"]
 
 [ext_resource type="Script" uid="uid://bv41rlaylfdgd" path="res://DataScript/pokemonStats.gd" id="1_ois5t"]
+[ext_resource type="Script" uid="uid://b706sh55lbl7c" path="res://DataScript/MoveData.gd" id="2_dxlvf"]
+[ext_resource type="Resource" uid="uid://u0plvpw6atli" path="res://Resources/Moves/AttaccoRapido.tres" id="3_sqc8c"]
+[ext_resource type="Resource" uid="uid://80pxvafifrnr" path="res://Resources/Moves/Azione.tres" id="4_2gomu"]
+[ext_resource type="Resource" uid="uid://emuggr13a3d" path="res://Resources/Moves/Idropompa.tres" id="5_08vhi"]
+[ext_resource type="Resource" uid="uid://dh4rh0xyuo7ma" path="res://Resources/Moves/LanciaFiamme.tres" id="6_5kc1u"]
 
 [resource]
 script = ExtResource("1_ois5t")
+name = "Charizard"
 sprite_number = 6
+starting_moves = Array[ExtResource("2_dxlvf")]([ExtResource("3_sqc8c"), ExtResource("4_2gomu"), ExtResource("5_08vhi"), ExtResource("6_5kc1u")])
 metadata/_custom_type_script = "uid://bv41rlaylfdgd"

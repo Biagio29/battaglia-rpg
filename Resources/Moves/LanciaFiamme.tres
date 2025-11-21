@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_yxd1j")
+name = "Lanciafiamme"
 power = 90
 category = "Speciale"
+description = "Colpisce il nemico con un'intensa fiammata."
 metadata/_custom_type_script = "uid://b706sh55lbl7c"

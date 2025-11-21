@@ -1,5 +1,24 @@
 extends Node
 
+enum Bioma{
+	arena1,
+	arena2,
+	arena3,
+	arena4,
+	arena5,
+	cave,
+	desert,
+	forest,
+	indor1,
+	indor2,
+	path,
+	sand,
+	sea,
+	swamp,
+	water
+}
+
+var current_biome: Bioma = Bioma.path
 # La squadra del giocatore (massimo 6)
 var player_party: Array[PokemonInstance] = []
 
@@ -16,12 +35,13 @@ func setup_test_team():
 	var pikachu_res = load("res://Resources/Pokemon/Pikachu.tres")
 	
 	# Creiamo le istanze "viventi"
-	var my_charizard = PokemonInstance.new(charizard_res, 10)
+	var my_charizard = PokemonInstance.new(charizard_res, 10, )
 	var my_pikachu = PokemonInstance.new(pikachu_res, 5)
 	
 	# Aggiungiamo alla squadra
-	player_party.append(my_charizard)
 	player_party.append(my_pikachu)
+	player_party.append(my_charizard)
+	
 	
 	print("Squadra creata! Hai " + str(player_party.size()) + " pokemon.")
 

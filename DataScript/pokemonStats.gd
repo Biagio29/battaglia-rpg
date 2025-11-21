@@ -8,4 +8,5 @@ class_name PokemonStats
 @export var attack: int = 10
 @export var defense: int = 10
 @export var speed: int = 10
-# Nota: Non serve più @export var sprite qui, perché li carichiamo da codice!
+# QUESTE SONO LE MOSSE DI DEFAULT (Quelle che ha appena lo crei)
+@export var starting_moves: Array[MoveData]

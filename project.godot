@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="BattagliaRpg"
+run/main_scene="uid://b5tfbl3dk3ljl"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

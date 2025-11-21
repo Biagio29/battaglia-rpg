@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="PokemonStats" load_steps=2 format=3 uid="uid://cubqb3rp8f8xs"]
+[gd_resource type="Resource" script_class="PokemonStats" load_steps=5 format=3 uid="uid://cubqb3rp8f8xs"]
 
 [ext_resource type="Script" uid="uid://bv41rlaylfdgd" path="res://DataScript/pokemonStats.gd" id="1_wqn6d"]
+[ext_resource type="Script" uid="uid://b706sh55lbl7c" path="res://DataScript/MoveData.gd" id="2_ukj6u"]
+[ext_resource type="Resource" uid="uid://u0plvpw6atli" path="res://Resources/Moves/AttaccoRapido.tres" id="3_6jomo"]
+[ext_resource type="Resource" uid="uid://80pxvafifrnr" path="res://Resources/Moves/Azione.tres" id="4_vsq3q"]
 
 [resource]
 script = ExtResource("1_wqn6d")
+name = "Pikachu"
 sprite_number = 25
+starting_moves = Array[ExtResource("2_ukj6u")]([ExtResource("3_6jomo"), ExtResource("4_vsq3q")])
 metadata/_custom_type_script = "uid://bv41rlaylfdgd"
